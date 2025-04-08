@@ -1,0 +1,75 @@
+.breadcrum {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    padding: 15px 20px;
+    margin: 20px auto;
+    color: #5e5e5e;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .breadcrum:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .breadcrum a {
+    text-decoration: none;
+    color: #5e5e5e;
+    position: relative;
+    padding: 0 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .breadcrum a:hover {
+    color: #ea065a;
+    transform: translateY(-2px);
+  }
+  
+  .breadcrum a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #ea065a;
+    transition: width 0.3s ease;
+  }
+  
+  .breadcrum a:hover:after {
+    width: 100%;
+  }
+  
+  .breadcrum img {
+    width: 10px;
+    height: 10px;
+    opacity: 0.7;
+    transition: transform 0.3s ease;
+  }
+  
+  .breadcrum span {
+    cursor: default;
+  }
+  
+  .breadcrum span.current {
+    color: #ea065a;
+    font-weight: 600;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .breadcrum {
+      margin: 15px;
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+  }

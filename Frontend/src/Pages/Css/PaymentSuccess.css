@@ -1,0 +1,103 @@
+.payment-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .success-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+  }
+  
+  .success-container h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+  
+  .payment-details {
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .detail-item span:first-child {
+    font-weight: 600;
+    color: #666;
+  }
+  
+  .detail-item span:last-child {
+    font-weight: 500;
+  }
+  
+  .success-message {
+    margin-bottom: 30px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .home-button, .orders-button {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .home-button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  .orders-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  .home-button:hover {
+    background-color: #e4e4e4;
+  }
+  
+  .orders-button:hover {
+    background-color: #45a049;
+  }
+  
+  @media (max-width: 600px) {
+    .success-container {
+      padding: 30px 20px;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }

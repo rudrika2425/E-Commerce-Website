@@ -1,0 +1,39 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 60px;
+    box-shadow: 0 1px 3px -2px #000;
+    margin-bottom: 1px;
+    background: white;
+    height: 60px;
+}
+.company{
+    display: flex;
+}
+.nav-logo{
+    width: 160px; 
+    height: 90px;
+    
+    object-fit: contain;
+}
+.company h1{
+    font-size: 40px;
+}
+.nav-profile{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+@media(max-width:800px)
+{
+    .navbar{
+        padding: 15px 30px;
+    }
+    .nav-logo{
+        width: 150px;
+    }
+    .nav-profile{
+        width: 60px;
+    }
+}
