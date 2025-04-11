@@ -1,229 +1,217 @@
+/* LoginSignup.css */
+
 .loginsignup {
     width: 100%;
-    
-    min-height: 100vh;
-    background: linear-gradient(180deg, #efd8bf, #f6a9ba 60%);
+    height: 100vh;
+    background: linear-gradient(to right, #ffebee 50%, #ffebee 50%);
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 10px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.loginsignup-container {
-    margin-top: -80px;
-    width: 100%;
-    max-width: 580px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 40px 60px;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .loginsignup-container {
+    width: 85%;
+    max-width: 900px;
+    height: 500px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
     position: relative;
     overflow: hidden;
-}
-
-.loginsignup-container:before {
-    content: '';
+  }
+  
+  .loginsignup-container::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 8px;
-    background: linear-gradient(90deg, #ff4141, #ff7676);
-}
-
-.loginsignup-container h1 {
-    margin: 0 0 30px;
-    font-size: 36px;
-    font-weight: 700;
+    width: 40%;
+    height: 100%;
+    
+    z-index: 0;
+  }
+  
+  .loginsignup-container h1 {
+    font-size: 32px;
     color: #333;
-    text-align: center;
+    margin-bottom: 20px;
     position: relative;
-}
-
-.loginsignup-container h1:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: #ff4141;
-}
-
-.loginsignup-fields {
+    z-index: 1;
+  }
+  
+  .loginsignup-fields {
     display: flex;
     flex-direction: column;
-    gap: 22px;
-    margin-top: 30px;
-}
-
-.loginsignup-fields input {
-    height: 60px;
-    width: 100%;
-    padding-left: 20px;
-    border: 1px solid #e8e8e8;
-    border-radius: 8px;
-    outline: none;
-    color: #5c5c5c;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background-color: #f9f9f9;
-}
-
-.loginsignup-fields input:focus {
-    border-color: #ff4141;
-    box-shadow: 0 0 0 2px rgba(255, 65, 65, 0.1);
-    background-color: #fff;
-}
-
-.loginsignup-fields input::placeholder {
-    color: #aaa;
-}
-
-.loginsignup-container button {
-    width: 100%;
-    height: 60px;
-    color: white;
-    background: linear-gradient(90deg, #ff4141, #ff7676);
-    margin-top: 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(255, 65, 65, 0.2);
-}
-
-.loginsignup-container button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 65, 65, 0.3);
-}
-
-.loginsignup-container button:active {
-    transform: translateY(0);
-}
-
-.loginsignup-login {
-    margin-top: 25px;
-    color: #5c5c5c;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
-}
-
-.loginsignup-login span {
-    color: #ff4141;
-    font-weight: 600;
-    cursor: pointer;
+    gap: 15px;
+    width: 300px;
     position: relative;
-    transition: all 0.3s ease;
-}
-
-.loginsignup-login span:hover {
-    color: #ff7676;
-}
-
-.loginsignup-login span:after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: #ff4141;
-    transition: width 0.3s ease;
-}
-
-.loginsignup-login span:hover:after {
+    z-index: 1;
+  }
+  
+  .loginsignup-fields input {
+    height: 50px;
     width: 100%;
-}
-
-.loginsignup-agree {
+    padding: 0 15px;
+    border: none;
+    background-color: #f5eeff;
+    color: #333;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .loginsignup-fields input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ea065a;;
+  }
+  
+  .loginsignup-fields input::placeholder {
+    color: #999;
+  }
+  
+  .loginsignup-container button {
+    width: 350px;
+    height: 50px;
+    margin-left: 30px;
+    background: linear-gradient(90deg, #ea065a, #ea065a);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .loginsignup-container button:hover {
+    transform: translateY(-2px);
+    
+  }
+  
+  .loginsignup-login {
+    margin-top: 15px;
+    color: #666;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .loginsignup-login span {
+    color: #ea065a;;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .loginsignup-login span:hover {
+    text-decoration: underline;
+  }
+  
+  /* Google sign-in button */
+  .google-btn {
+    width: 300px;
+    height: 45px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 25px;
     display: flex;
     align-items: center;
-    margin-top: 25px;
-    gap: 12px;
-    color: #5c5c5c;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.loginsignup-agree input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
     cursor: pointer;
-    accent-color: #ff4141;
-}
-
-/* Fashion-themed decorative elements */
-.fashion-icon {
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .google-btn:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Decorative elements */
+  .fashion-icon {
     position: absolute;
-    opacity: 0.03;
-    z-index: 0;
-}
-
-.hanger-icon {
-    top: 20px;
-    right: 20px;
+    color: rgba(156, 39, 176, 0.1);
     font-size: 80px;
-    transform: rotate(15deg);
-}
-
-.tag-icon {
+    z-index: 0;
+  }
+  
+  .hanger-icon {
     bottom: 20px;
-    left: 20px;
-    font-size: 60px;
-    transform: rotate(-15deg);
-}
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
+    right: 40px;
+    transform: rotate(15deg);
+  }
+  
+  .tag-icon {
+    top: 40px;
+    left: 60px;
+    transform: rotate(-20deg);
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .loginsignup {
+      background: linear-gradient(to bottom, #f8f8f8 50%, #ffebee 50%);
+    }
+  
     .loginsignup-container {
-        padding: 30px 40px;
+      width: 90%;
+      padding: 20px;
     }
-    
-    .loginsignup-container h1 {
-        font-size: 28px;
+  
+    .loginsignup-container::before {
+      width: 100%;
+      height: 50%;
     }
-    
-    .loginsignup-fields input {
-        height: 55px;
-        font-size: 15px;
+  
+    .loginsignup-fields,
+    .loginsignup-container button,
+    .google-btn {
+      width: 280px;
     }
-    
-    .loginsignup-container button {
-        height: 55px;
-        font-size: 17px;
+  }
+  
+  /* Optional: Add animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
-}
-
-@media screen and (max-width: 576px) {
-    .loginsignup-container {
-        padding: 25px 20px;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    .loginsignup-container h1 {
-        font-size: 24px;
-    }
-    
-    .loginsignup-fields {
-        gap: 16px;
-    }
-    
-    .loginsignup-fields input {
-        height: 50px;
-        font-size: 14px;
-    }
-    
-    .loginsignup-container button {
-        height: 50px;
-        font-size: 16px;
-    }
-    
-    .loginsignup-login {
-        font-size: 14px;
-    }
-}
+  }
+  
+  .loginsignup-container h1,
+  .loginsignup-fields input,
+  .loginsignup-container button,
+  .loginsignup-login {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  .loginsignup-fields input:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .loginsignup-fields input:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .loginsignup-fields input:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .loginsignup-container button {
+    animation-delay: 0.4s;
+  }
+  .loginsignup-login {
+    animation-delay: 0.5s;
+  }
