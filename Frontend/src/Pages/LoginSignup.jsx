@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Css/LoginSignup.css';
 
 const LoginSignup = () => {
+  const navigate = useNavigate();
   const [state, setState] = useState("Login");
   const [formData, setFormData] = useState({
     username: "",
@@ -41,7 +43,7 @@ const LoginSignup = () => {
       const responseData = await response.json();
       if (responseData.success) {
         localStorage.setItem('auth-token', responseData.token);
-        window.location.replace("/shop");
+        navigate("/shop"); // Changed from window.location.replace()
       } else {
         alert(responseData.errors || "Login failed");
       }
@@ -64,7 +66,7 @@ const LoginSignup = () => {
       const responseData = await response.json();
       if (responseData.success) {
         localStorage.setItem('auth-token', responseData.token);
-        window.location.replace("/shop");
+        navigate("/shop"); // Changed from window.location.replace()
       } else {
         alert(responseData.errors || "Sign up failed");
       }
@@ -83,7 +85,7 @@ const LoginSignup = () => {
         
         <h1>{state}</h1>
         <div className="loginsignup-fields">
-          {state === "Sign Up" ?
+          {state === "Sign Up" &&
             <input
               name='username'
               value={formData.username}
@@ -91,7 +93,6 @@ const LoginSignup = () => {
               type="text"
               placeholder='Enter Your Name'
             />
-            : <></>
           }
           <input
             name='email'
@@ -113,15 +114,12 @@ const LoginSignup = () => {
           {state === "Login" ? "Sign In" : "Create Account"}
         </button>
         
-        {state === "Sign Up" ?
-          <p className="loginsignup-login">
-            Already have an account? <span onClick={() => setState('Login')}>Login here</span>
-          </p>
-        :
-          <p className="loginsignup-login">
-            New to our boutique? <span onClick={() => setState('Sign Up')}>Register now</span>
-          </p>
-        }
+        <p className="loginsignup-login">
+          {state === "Sign Up"
+            ? <>Already have an account? <span onClick={() => setState('Login')}>Login here</span></>
+            : <>New to our boutique? <span onClick={() => setState('Sign Up')}>Register now</span></>
+          }
+        </p>
       </div>
     </div>
   );
