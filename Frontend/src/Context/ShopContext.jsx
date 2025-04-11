@@ -16,13 +16,13 @@ const ShopContextProvider = (props) => {
   const [amount,setAmount]=useState();
 
   useEffect(() => {
-    fetch('http://localhost:4000/allproducts',[])
+    fetch('https://e-commerce-website-h7up.onrender.com/allproducts',[])
       .then((response) => response.json())
       .then((data) => setAll_Product(data))
       .catch((error) => console.error("Error fetching products:", error));
 
     if (localStorage.getItem('auth-token')) {
-      fetch(`http://localhost:4000/getcart`, {
+      fetch(`https://e-commerce-website-h7up.onrender.com/getcart`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -47,7 +47,7 @@ const ShopContextProvider = (props) => {
     const token = localStorage.getItem("auth-token");
     if (token) {
       console.log("token checked");
-      fetch("http://localhost:4000/addtocart", {
+      fetch("https://e-commerce-website-h7up.onrender.com/addtocart", {
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -71,7 +71,7 @@ const ShopContextProvider = (props) => {
     console.log("remove from cart");
     if (token) {
       console.log("token checked");
-      fetch("http://localhost:4000/removefromcart", {
+      fetch("https://e-commerce-website-h7up.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           'Accept': 'application/json',

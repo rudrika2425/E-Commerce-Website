@@ -12,11 +12,11 @@ const CartItems = () => {
   const checkoutHandler = async (amount) => {
     try {
       // 1. Get Razorpay key from backend
-      const { data: { key } } = await axios.get("http://localhost:4000/payment/getkey");
+      const { data: { key } } = await axios.get("https://e-commerce-website-h7up.onrender.com/payment/getkey");
       
       // 2. Create order in backend
       const { data: { order } } = await axios.post(
-        "http://localhost:4000/payment/process", 
+        "https://e-commerce-website-h7up.onrender.com/payment/process", 
         { amount: amount * 100 } // Convert to paise
       );
   
@@ -32,7 +32,7 @@ const CartItems = () => {
           try {
             // 4. Verify payment with backend
             const { data } = await axios.post(
-              "http://localhost:4000/payment/verify",
+              "https://e-commerce-website-h7up.onrender.com/payment/verify",
               {
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_order_id: response.razorpay_order_id,

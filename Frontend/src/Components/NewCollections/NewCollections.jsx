@@ -7,7 +7,7 @@ const NewCollections = () => {
   
 
   useEffect(() => {
-    fetch('http://localhost:4000/newcollections')
+    fetch('https://e-commerce-website-h7up.onrender.com/newcollections')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
