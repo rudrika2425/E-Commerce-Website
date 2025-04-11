@@ -1,13 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stylish Cart</title>
+    <meta name="description" content="Your stylish e-commerce store" />
+    <meta name="theme-color" content="#3399cc" />
+    <title>Stylish Cart - Premium Fashion Boutique</title>
+    
+    <!-- Preconnect to important third-party domains -->
+    <link rel="preconnect" href="https://e-commerce-website-h7up.onrender.com">
+    <link rel="preconnect" href="https://api.razorpay.com" crossorigin>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Razorpay SDK (load early but non-blocking) -->
+    <script 
+      src="https://checkout.razorpay.com/v1/checkout.js" 
+      defer 
+      onload="window.RazorpayLoaded = true"
+    ></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.jsx" as="script">
+    <link rel="preload" href="/src/App.css" as="style">
   </head>
   <body>
+    <noscript>
+      <strong>
+        We're sorry but our store doesn't work properly without JavaScript enabled. 
+        Please enable it to continue.
+      </strong>
+    </noscript>
+    
     <div id="root"></div>
+    
+    <!-- Loading animation (shown until React hydrates) -->
+    <div id="loading-spinner" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%)">
+      <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="25" cy="25" r="20" stroke="#3399cc" stroke-width="4" fill="none" stroke-dasharray="31.415, 31.415">
+          <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="1s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+    
+    <script>
+      // Hide loading spinner when app mounts
+      window.addEventListener('DOMContentLoaded', () => {
+        const root = document.getElementById('root');
+        const observer = new MutationObserver(() => {
+          if (root.children.length > 0) {
+            document.getElementById('loading-spinner').style.display = 'none';
+            observer.disconnect();
+          }
+        });
+        observer.observe(root, { childList: true });
+      });
+      
+      // Check Razorpay loading
+      if (!window.Razorpay) {
+        console.warn('Razorpay SDK not loaded - payments will fail');
+      }
+    </script>
+    
+    <!-- Main app script (loaded with module/nomodule pattern for better compatibility) -->
     <script type="module" src="/src/main.jsx"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script nomodule defer src="/src/legacy.js"></script>
   </body>
 </html>
