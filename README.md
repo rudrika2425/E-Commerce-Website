@@ -6,7 +6,8 @@ Stylish Cart is a full-featured, responsive e-commerce platform built with the *
 
 ## 🌐 Live Demo
 
-👉 **[Stylish Cart Website](https://e-commerce-website-admin-pplp.onrender.com/)**  
+👉 **[Stylish Cart Website User Pannel](https://e-commerce-website-frontend-vka1.onrender.com/shop)**
+👉 **[Stylish Cart Website Admin Pannel](https://e-commerce-website-admin-pplp.onrender.com/)**  
 *Kindly use the website and explore the user and admin features live in action!*
 
 ---
@@ -193,12 +194,6 @@ Contributions are welcome! If you find a bug or want to improve the project:
 ## 📬 Feedback
 
 We’d love to hear your thoughts and suggestions! Feel free to open an issue or contact us through the project page.
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
