@@ -1,12 +1,12 @@
 import React, {  useState, useEffect } from 'react';
-import Item from '../Items/Item'; // Corrected path
+import Item from '../Items/Item';
 import './Popular.css'
 const Popular = () => {
     
     const [popularProducts, setPopularProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://e-commerce-website-h7up.onrender.com/popularinwomen')
+        fetch(`${import.meta.env.VITE_API_URL}/popularinwomen`)
             .then((response) => response.json())
             .then((data) => setPopularProducts(data))
             .catch((error) => console.error("Error fetching popular products:", error));

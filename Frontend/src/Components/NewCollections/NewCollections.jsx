@@ -4,10 +4,9 @@ import Item from '../Items/Item';
 
 const NewCollections = () => {
   const [newCollection, setNewCollection] = useState([]);
-  
 
   useEffect(() => {
-    fetch('https://e-commerce-website-h7up.onrender.com/newcollections')
+    fetch(`${import.meta.env.VITE_API_URL}/newcollections`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

@@ -11,7 +11,7 @@ const PaymentSuccess = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Get payment details from URL parameters
+
     const searchParams = new URLSearchParams(location.search);
     setPaymentDetails({
       orderId: searchParams.get('orderId') || 'N/A',

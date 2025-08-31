@@ -32,7 +32,7 @@ const LoginSignup = () => {
     if (!validateForm()) return;
    
     try {
-      const response = await fetch('https://e-commerce-website-h7up.onrender.com/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -43,7 +43,7 @@ const LoginSignup = () => {
       const responseData = await response.json();
       if (responseData.success) {
         localStorage.setItem('auth-token', responseData.token);
-        navigate("/shop"); // Changed from window.location.replace()
+        navigate("/shop"); 
       } else {
         alert(responseData.errors || "Login failed");
       }
@@ -55,7 +55,7 @@ const LoginSignup = () => {
   const signup = async () => {
     if (!validateForm()) return;
     try {
-      const response = await fetch('https://e-commerce-website-h7up.onrender.com/signup', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -66,7 +66,7 @@ const LoginSignup = () => {
       const responseData = await response.json();
       if (responseData.success) {
         localStorage.setItem('auth-token', responseData.token);
-        navigate("/shop"); // Changed from window.location.replace()
+        navigate("/shop"); 
       } else {
         alert(responseData.errors || "Sign up failed");
       }
@@ -79,7 +79,7 @@ const LoginSignup = () => {
   return (
     <div className="loginsignup">
       <div className="loginsignup-container">
-        {/* Decorative fashion elements */}
+        
         <div className="fashion-icon hanger-icon">&#8982;</div>
         <div className="fashion-icon tag-icon">&#9906;</div>
         

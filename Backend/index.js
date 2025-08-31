@@ -11,6 +11,8 @@ const crypto = require('crypto');
 require("dotenv").config(); // Load environment variables
 const Users = require("./models/user");
 const Product = require("./models/product");
+const cloudinary = require("cloudinary");
+const fs = require("fs");
 
 const app = express();
 const port = process.env.PORT || 6000;
@@ -27,48 +29,72 @@ mongoose
 
 app.get("/", (req, res) => res.send("Express App is running"));
 
-// Image storage engine
-const storage = multer.diskStorage({
-  destination: "./upload/images",
-  filename: (req, file, cb) => {
-    return cb(
-      null,
-      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const upload = multer({ storage: storage });
 
-// Upload endpoint for images
+const upload = multer({ dest: "uploads/" });
+
 app.use("/images", express.static("upload/images"));
 
-app.post("/upload", upload.single("product"), (req, res) => {
-  res.json({
-    success: 1,
-    image_url: `https://e-commerce-website-h7up.onrender.com/images/${req.file.filename}`,
-  });
+app.post("/upload", upload.single("product"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: "No file uploaded" });
+    }
+
+    const result = await cloudinary.v2.uploader.upload(req.file.path, {
+      folder: "ecommerce_products",
+    });
+
+    fs.unlinkSync(req.file.path);
+
+    res.json({
+      success: true,
+      image_url: result.secure_url,
+    });
+  } catch (error) {
+    console.error("Cloudinary upload error:", error);
+    res.status(500).json({ success: false, message: "Image upload failed" });
+  }
 });
 
 // API for adding products
+// API for adding products
 app.post("/addproduct", async (req, res) => {
-  let products = await Product.find({}); //return array of products
-  let id = products.length + 1;
-  const product = new Product({
-    id: id,
-    name: req.body.name,
-    image: req.body.image,
-    category: req.body.category,
-    new_price: req.body.new_price,
-    old_price: req.body.old_price,
-  });
-  await product.save();
-  console.log(product);
-  res.json({
-    success: true,
-    name: req.body.name,
-  });
+  try {
+    let products = await Product.find({});
+    let id = products.length + 1;
+
+    const product = new Product({
+      id: id,
+      name: req.body.name,
+      image: req.body.image,  // ✅ frontend sends Cloudinary URL here
+      category: req.body.category,
+      new_price: req.body.new_price,
+      old_price: req.body.old_price,
+    });
+
+    await product.save();
+    console.log("Product Saved:", product);
+
+    res.json({
+      success: true,
+      message: "Product added successfully",
+      product,
+    });
+  } catch (error) {
+    console.error("Error adding product:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to add product",
+    });
+  }
 });
+
 
 // API for deleting products
 app.post("/removeproduct", async (req, res) => {

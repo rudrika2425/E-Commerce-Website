@@ -11,7 +11,7 @@ const Product = () => {
     const { all_product } = useContext(ShopContext);
     const product = all_product.find((item) => item.id === Number(productId));
 
-    // Handle case where product is not found
+    
     if (!product) {
         return <div>Product not found</div>;
     }

@@ -16,13 +16,13 @@ const ShopContextProvider = (props) => {
   const [amount,setAmount]=useState();
 
   useEffect(() => {
-    fetch('https://e-commerce-website-h7up.onrender.com/allproducts',[])
+    fetch(`${import.meta.env.VITE_API_URL}/allproducts`,[])
       .then((response) => response.json())
       .then((data) => setAll_Product(data))
       .catch((error) => console.error("Error fetching products:", error));
 
     if (localStorage.getItem('auth-token')) {
-      fetch(`https://e-commerce-website-h7up.onrender.com/getcart`, {
+      fetch(`${import.meta.env.VITE_API_URL}/getcart`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -47,7 +47,7 @@ const ShopContextProvider = (props) => {
     const token = localStorage.getItem("auth-token");
     if (token) {
       console.log("token checked");
-      fetch("https://e-commerce-website-h7up.onrender.com/addtocart", {
+      fetch(`${import.meta.env.VITE_API_URL}/addtocart`, {
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -65,13 +65,13 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => {
       const newQuantity = prev[itemId] - 1;
-      return { ...prev, [itemId]: Math.max(newQuantity, 0) }; // Prevent negative values
+      return { ...prev, [itemId]: Math.max(newQuantity, 0) }; 
     });
     const token = localStorage.getItem('auth-token');
     console.log("remove from cart");
     if (token) {
       console.log("token checked");
-      fetch("https://e-commerce-website-h7up.onrender.com/removefromcart", {
+      fetch(`${import.meta.env.VITE_API_URL}/removefromcart`, {
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -111,7 +111,7 @@ const ShopContextProvider = (props) => {
   };
 
   const contextValue = { getTotalCartItems, getTotalCartAmount, all_product, cartItems, addToCart, removeFromCart ,amount};
-  //all methods and functions can be accesed by any component
+  
 
   return (
     <ShopContext.Provider value={contextValue}>

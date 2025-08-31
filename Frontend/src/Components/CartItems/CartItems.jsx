@@ -8,21 +8,17 @@ import { useNavigate } from 'react-router-dom';
 const CartItems = () => {
   const { getTotalCartAmount, all_product, cartItems, removeFromCart } = useContext(ShopContext);
   const navigate = useNavigate();
-
   const checkoutHandler = async (amount) => {
     try {
-      // 1. Get Razorpay key from backend
-      const { data: { key } } = await axios.get("https://e-commerce-website-h7up.onrender.com/payment/getkey");
-      
-      // 2. Create order in backend
+     
+      const { data: { key } } = await axios.get(`${import.meta.env.VITE_API_URL}/payment/getkey`);
       const { data: { order } } = await axios.post(
-        "https://e-commerce-website-h7up.onrender.com/payment/process", 
-        { amount: amount * 100 } // Convert to paise
+        `${import.meta.env.VITE_API_URL}/payment/process`, 
+        { amount: amount * 100 }
       );
   
-      // 3. Setup Razorpay options
       const options = {
-        key, // Your Razorpay key
+        key, 
         amount: order.amount, 
         currency: "INR",
         name: "Your Store Name",
@@ -30,9 +26,8 @@ const CartItems = () => {
         order_id: order.id,
         handler: async function(response) {
           try {
-            // 4. Verify payment with backend
             const { data } = await axios.post(
-              "https://e-commerce-website-h7up.onrender.com/payment/verify",
+              `${import.meta.env.VITE_API_URL}/payment/verify`,
               {
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_order_id: response.razorpay_order_id,
@@ -41,7 +36,6 @@ const CartItems = () => {
             );
             
             if (data.success) {
-              // Redirect to success page with payment details
               navigate(`/payment-success?orderId=${response.razorpay_order_id}&paymentId=${response.razorpay_payment_id}&amount=${amount}`);
             } else {
               alert("Payment verification failed");
@@ -61,11 +55,9 @@ const CartItems = () => {
         }
       };
   
-      // 5. Open Razorpay checkout
       const rzp = new window.Razorpay(options);
       rzp.open();
   
-      // 6. Handle payment failure
       rzp.on("payment.failed", function(response) {
         alert(`Payment failed: ${response.error.description}`);
       });

@@ -6,7 +6,7 @@ const Popular = () => {
     const [popularProducts, setPopularProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://e-commerce-website-h7up.onrender.com/popularinmen')
+        fetch(`${import.meta.env.VITE_API_URL}/popularinmen`)
             .then((response) => response.json())
             .then((data) => setPopularProducts(data))
             .catch((error) => console.error("Error fetching popular products:", error));
