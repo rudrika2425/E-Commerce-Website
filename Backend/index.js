@@ -8,7 +8,7 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
 const crypto = require('crypto');
-require("dotenv").config(); // Load environment variables
+require("dotenv").config();
 const Users = require("./models/user");
 const Product = require("./models/product");
 const cloudinary = require("cloudinary");
@@ -62,8 +62,7 @@ app.post("/upload", upload.single("product"), async (req, res) => {
   }
 });
 
-// API for adding products
-// API for adding products
+
 app.post("/addproduct", async (req, res) => {
   try {
     let products = await Product.find({});
@@ -72,7 +71,7 @@ app.post("/addproduct", async (req, res) => {
     const product = new Product({
       id: id,
       name: req.body.name,
-      image: req.body.image,  // ✅ frontend sends Cloudinary URL here
+      image: req.body.image, 
       category: req.body.category,
       new_price: req.body.new_price,
       old_price: req.body.old_price,
@@ -295,11 +294,6 @@ app.post("/payment/verify", async (req, res) => {
       });
     }
 
-    // Here you would typically:
-    // 1. Save the payment details to your database
-    // 2. Update order status
-    // 3. Send confirmation email, etc.
-
     res.status(200).json({
       success: true,
       message: "Payment verified successfully",
@@ -322,7 +316,7 @@ app.get("/payment/getkey", (req, res) => {
   });
 });
 
-// Error handling middleware
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
